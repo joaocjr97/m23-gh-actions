@@ -6,10 +6,16 @@
   "author": "joão c",
   "license": "ISC",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress run",
+    "report": "npx mochawesome-merge ./mochawesome-report/*.json > mochawesome-report/merged-report.json && npx marge mochawesome-report/merged-report.json -f report -o mochawesome-report"
   },
   "dependencies": {
+    "cypress-mochawesome-reporter": "^3.8.2"
   },
   "devDependencies": {
+    "cypress": "^13.6.4",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.1",
+    "mochawesome-report-generator": "^6.2.0"
   }
 }

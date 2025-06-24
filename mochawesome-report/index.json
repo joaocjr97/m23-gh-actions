@@ -1,0 +1,144 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-06-24T23:40:53.479Z",
+    "end": "2025-06-24T23:41:10.241Z",
+    "duration": 16762,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "9df52bb5-2aeb-4329-814b-7e5226d707cf",
+      "title": "",
+      "fullFile": "cypress\\e2e\\Teste.cy.js",
+      "file": "cypress\\e2e\\Teste.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "864d45ad-267b-44a9-84da-443922634799",
+          "title": "Validações de Categorias",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "categories should be visible",
+              "fullTitle": "Validações de Categorias categories should be visible",
+              "timedOut": null,
+              "duration": 12851,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.intercept('GET', '**/public/getCategories', {\n  fixture: 'categories.json'\n}).as('getCategories');\nhomePage.openSearchProduct();\nhomePage.openCategoriesFilter();\nhomePage.categories().should('have.length.greaterThan', 50);",
+              "err": {},
+              "uuid": "d7335ec7-50c9-43c1-835a-3a444f0f3567",
+              "parentUUID": "864d45ad-267b-44a9-84da-443922634799",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "categories should be empty",
+              "fullTitle": "Validações de Categorias categories should be empty",
+              "timedOut": null,
+              "duration": 1958,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.intercept('GET', '**/public/getCategories', {\n  fixture: 'noCategories.json'\n}).as('getCategoriesEmpty');\nhomePage.openSearchProduct();\nhomePage.openCategoriesFilter();\nhomePage.categories().should('have.length', 1);",
+              "err": {},
+              "uuid": "e0ad1cd3-2271-4198-b824-4d8c2365a7f7",
+              "parentUUID": "864d45ad-267b-44a9-84da-443922634799",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "categories should be empty with error",
+              "fullTitle": "Validações de Categorias categories should be empty with error",
+              "timedOut": null,
+              "duration": 1819,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.intercept('GET', '**/public/getCategories', {\n  statusCode: 500\n}).as('getCategoriesError');\nhomePage.openSearchProduct();\nhomePage.openCategoriesFilter();\nhomePage.categories().should('have.length', 1);",
+              "err": {},
+              "uuid": "9d169842-af24-41a1-ae5e-4ca494c269fc",
+              "parentUUID": "864d45ad-267b-44a9-84da-443922634799",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d7335ec7-50c9-43c1-835a-3a444f0f3567",
+            "e0ad1cd3-2271-4198-b824-4d8c2365a7f7",
+            "9d169842-af24-41a1-ae5e-4ca494c269fc"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 16628,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "index.html",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "mochawesome-report",
+        "overwrite": false,
+        "reportFilename": "index.html",
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
