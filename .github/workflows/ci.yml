@@ -1,0 +1,49 @@
+name: CI & Test Report
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  cypress-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Clona o repositório
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Configura Node.js (sempre use LTS no CI)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      # Instala dependências
+      - name: Install dependencies
+        run: npm ci
+
+      # Executa os testes do Cypress
+      - name: Run Cypress Tests
+        run: npx cypress run || true  # use '|| true' para continuar e gerar relatório mesmo com falha
+
+      # Gera o relatório completo Mochawesome
+      - name: List mochawesome report files
+        run: ls -lh mochawesome-report || echo 'No report generated'
+
+      # Publica o relatório no GitHub Pages
+      - name: Publish Report on GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()  # garante que será executado mesmo se o job anterior falhar
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./mochawesome-report
+          publish_branch: gh-pages
+
+      # (Opcional) Adiciona um resumo do resultado dos testes nos artefatos do CI
+      - name: Upload Mochawesome Report as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mochawesome-report
+          path: mochawesome-report
